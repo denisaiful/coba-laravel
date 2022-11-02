@@ -7,7 +7,6 @@
    <div class="row my-3">
       <div class="col-lg-8">   
 
-.h3   
         
             <h2 class="mb-3">{{ $post["title"] }}</h2>
            

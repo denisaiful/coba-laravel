@@ -33,6 +33,15 @@
       @enderror
     </div>
     <div class="form-floating">
+      <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" placeholder="slug" value="{{ old('slug') }}" >
+      <label for="slug">Slug</label>
+       @error('slug')
+      <div class="invalid-feedback">
+      {{ $message }}
+      </div>        
+      @enderror
+    </div>
+    <div class="form-floating">
       <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com"  value="{{ old('email') }}" required>
       <label for="email">Email</label>
        @error('email')
@@ -42,7 +51,7 @@
       @enderror
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control rounded-bottom @error('password') is-invalid @enderror" name="password" id="password" placeholder="password" required>
+      <input type="password" class="form-control rounded-bottom @error('password') is-invalid @enderror" name="password" id="password" placeholder="password" autocomplete="off" required>
       <label for="password">Password</label>
        @error('password')
       <div class="invalid-feedback">
@@ -60,5 +69,14 @@
   </div>
 </div>
 
-
+<script>
+  const title = document.querySelector('#username');
+  const slug = document.querySelector('#slug');
+  
+  title.addEventListener('change', function(){
+      fetch('/dashboard/posts/checkSlug?title=' + title.value)
+      .then(response => response.json())
+      .then(data => slug.value = data.slug)
+  });
+  </script>
 @endsection

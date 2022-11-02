@@ -6,8 +6,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DashboardPostController; 
+use App\Http\Controllers\DasboardCampusController; 
+use App\Http\Controllers\DashboardProdiController; 
+use App\Http\Controllers\DashboardFakultasController; 
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BeasiswaController;
+use App\Http\Controllers\CampusController;
+use Yajra\Datatables\Datatables;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +48,21 @@ Route::get('/about', function () {
     ]);
 });
 
+Route::get('/campus', function () {
+    return view('campus', [
+        "title" => "Program Beasiswa",
+       
+        'active' => 'campus'
+
+    ]);
+});
+
+
+
 
 
 Route::get('/posts', [PostController::class, 'index']);
+
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
@@ -53,6 +73,8 @@ Route::get('/categories', function () {
 
     ]);
 });
+
+
 
 
 
@@ -69,13 +91,29 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
+
+
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register/checkSlug',[RegisterController::class,'checkSlug']);
 
-Route::get('/dashboard/posts/checkSlug',[DashboardPostController::class,'checkSlug'])->middleware('auth');
+Route::get('/dashboard/posts/checkSlug',[DashboardPostController::class,'checkSlug']);
 Route::resource('/dashboard/posts',DashboardPostController::class)->middleware('auth');
+Route::get('/dashboard/categories/checkSlug',[AdminCategoryController::class,'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/categories',AdminCategoryController::class)->except('show');
+
+Route::get('/dashboard/user/checkSlug',[UserController::class,'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/user',UserController:: class)->except('show')->middleware('auth');
+Route::post('/dashboard/user', [UserController::class, 'store']);
+
+Route::resource('/dashboard/beasiswa',BeasiswaController:: class)->middleware('auth');
+Route::resource('/dashboard/campus',DasboardCampusController:: class)->middleware('auth');
+Route::resource('/dashboard/prodi',DashboardProdiController:: class)->middleware('auth');
+Route::resource('/dashboard/fakultas',DashboardFakultasController:: class)->middleware('auth');
+Route::resource('/dashboard/programs',ProgramController:: class)->middleware('auth');
+Route::resource('/campus',CampusController:: class);
+
 

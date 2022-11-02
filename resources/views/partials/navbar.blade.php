@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="/">WPU | Home</a>
+            <a class="navbar-brand" href="/">Beasiswa BMKG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,6 +16,12 @@
                     <li class="nav-item">
                         <a class="nav-link {{ ($active === "posts") ? 'active' : '' }}" href="/posts">Blog</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ ($active === "campus") ? 'active' : '' }}" href="/campus">Program Beasiswa</a>
+                    </li>
+                    
+                    
                     <li class="nav-item">
                         <a class="nav-link {{ ($active === "categories") ? 'active' : '' }}" href="/categories">Categories</a>
                     </li>
@@ -51,7 +57,6 @@
                 </ul>
                     
                 @endauth
-
                 
             </div>
         </div>

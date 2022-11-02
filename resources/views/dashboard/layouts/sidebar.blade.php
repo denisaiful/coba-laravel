@@ -13,6 +13,12 @@
               My Posts
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/programs*') ? 'active' : '' }}" href="/dashboard/programs">
+              <span data-feather="file-text"></span>
+              My Program
+            </a>
+          </li>
 
         </ul>
 
@@ -27,6 +33,39 @@
               Post Categories
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/user*') ? 'active' : '' }}" href="/dashboard/user">
+              <span data-feather="user"></span>
+             User
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/beasiswa*') ? 'active' : '' }}" href="/dashboard/beasiswa">
+              <span data-feather="users"></span>
+             Penerima Beasiswa
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/campus*') ? 'active' : '' }}" href="/dashboard/campus">
+              <span data-feather="briefcase"></span>
+             Kampus
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/fakultas*') ? 'active' : '' }}" href="/dashboard/fakultas">
+              <span data-feather="briefcase"></span>
+             Fakultas
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/prodi*') ? 'active' : '' }}" href="/dashboard/prodi">
+              <span data-feather="briefcase"></span>
+             Program Studi
+            </a>
+          </li>
+
         </ul>
     @endcan
       </div>

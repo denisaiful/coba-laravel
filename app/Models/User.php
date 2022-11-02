@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class User extends Authenticatable
 {
@@ -48,5 +49,23 @@ class User extends Authenticatable
     public function post()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

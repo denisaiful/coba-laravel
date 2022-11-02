@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -105,8 +106,12 @@ class AdminCategoryController extends Controller
     
             $validatedData = $request->validate($rules);
          
-            return redirect('/dashboard/categories')->with('success', 'Post has been Updated');
         }
+
+        Category::where('id', $category->id)
+        ->update($validatedData);
+
+        return redirect('/dashboard/categories')->with('success', 'Categories has been Updated');
     }
 
     /**
@@ -122,4 +127,6 @@ class AdminCategoryController extends Controller
 
         return redirect('/dashboard/categories')->with('success', 'Categories has been deleted');
     }
+
+  
 }
